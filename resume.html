@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rohit Kumar Chaurasiya - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0c0c0c;
+            color: #d1d5db;
+            overflow-x: hidden;
+        }
+        
+        #background-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+        }
+
+        /* Updated hero text with a stronger green glow */
+        .hero-text {
+            text-shadow: 0 0 10px #4ade80, 0 0 20px #4ade80, 0 0 30px #4ade80, 0 0 40px #4ade80;
+        }
+
+        .section-title {
+            position: relative;
+            color: #4ade80; /* A vibrant green */
+            display: inline-block;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 70%;
+            height: 4px;
+            background-color: #4ade80;
+            border-radius: 9999px;
+            box-shadow: 0 0 8px rgba(0, 255, 0, 0.5);
+        }
+
+        .card-bg {
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-bg:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(74, 222, 128, 0.2);
+        }
+
+        .list-item-bg {
+            background-color: #262626;
+        }
+        
+        /* Updated CSS for the profile picture container to be a circle */
+        .profile-frame {
+            border-radius: 9999px; /* This makes it a perfect circle */
+            overflow: hidden; /* Ensures the image stays within the circle */
+            border: 4px solid #4ade80; /* Adds a clean green border */
+            box-shadow: 0 0 15px #4ade80; /* Adds a subtle green glow */
+        }
+
+        /* Updated CSS for the intro paragraph to have a green glowing outline instead of a border */
+        .intro-paragraph-outline {
+            box-shadow: 0 0 15px #4ade80, 0 0 20px rgba(74, 222, 128, 0.4);
+            border-radius: 1.5rem; /* Matches the rounded-3xl of the parent div */
+        }
+
+        /* To make sure the name stays on one line */
+        .name-one-line {
+            white-space: nowrap;
+        }
+
+        /* New CSS for glowing text inside the introduction paragraph */
+        .intro-text-glow {
+            text-shadow: 0 0 5px #4ade80, 0 0 10px #4ade80, 0 0 15px #4ade80;
+        }
+    </style>
+</head>
+<body class="antialiased leading-relaxed">
+    <canvas id="background-canvas"></canvas>
+
+    <header class="py-4 fixed w-full z-50 bg-[#0c0c0c]/80 backdrop-blur-sm shadow-xl">
+        <nav class="container mx-auto px-4 flex justify-between items-center">
+            <a href="#" class="text-3xl font-extrabold text-white tracking-widest hero-text">
+                RKC<span class="text-[#4ade80]">.</span>
+            </a>
+            <div class="space-x-4 hidden md:flex font-medium">
+                <a href="#summary" class="text-slate-400 hover:text-[#4ade80] transition-colors">Summary</a>
+                <a href="#skills" class="text-slate-400 hover:text-[#4ade80] transition-colors">Skills</a>
+                <a href="#projects" class="text-slate-400 hover:text-[#4ade80] transition-colors">Projects</a>
+                <a href="#experience" class="text-slate-400 hover:text-[#4ade80] transition-colors">Experience</a>
+                <a href="#education" class="text-slate-400 hover:text-[#4ade80] transition-colors">Education</a>
+                <a href="#resume" class="text-slate-400 hover:text-[#4ade80] transition-colors">Resume</a>
+                <a href="#contact" class="text-slate-400 hover:text-[#4ade80] transition-colors">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="h-screen flex items-center justify-center text-left">
+    <div class="container mx-auto px-4 relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div class="space-y-6">
+            <div>
+                <h1 id="typing-text" class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white mb-4 hero-text name-one-line"></h1>
+                <p id="glitch-text" class="text-lg md:text-2xl font-light text-slate-400 mb-2 hero-text"></p>
+                <div class="p-6 rounded-3xl">
+                    <p id="intro-text" class="text-base md:text-lg font-light text-slate-300 mb-8 intro-text-glow"></p>
+                </div>
+                <div class="flex flex-wrap space-x-4">
+                    <a href="mailto:rohitkumarchaurasiya43@gmail.com" class="text-white bg-[#4ade80] hover:bg-emerald-600 transition-colors py-3 px-6 rounded-full font-bold shadow-lg">Contact Me</a>
+                    <a href="#skills" class="text-[#4ade80] border-2 border-[#4ade80] hover:bg-[#4ade80] hover:text-[#1a1a1a] transition-colors py-3 px-6 rounded-full font-bold shadow-lg mt-4 md:mt-0">View Skills</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex justify-center md:justify-end mt-8 md:mt-0">
+            <div class="w-64 h-64 md:w-80 md:h-80 profile-frame flex items-center justify-center">
+                <img src="/home/lucifer/Downloads/rohit.jpeg" alt="Rohit Kumar Chaurasiya" class="rounded-full w-full h-full object-cover">
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <main class="container mx-auto px-4 py-16 md:py-24 space-y-24 relative z-10">
+
+        <section id="projects">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center items-center">
+                <div class="space-y-2">
+                    <h3 class="text-4xl md:text-5xl font-extrabold text-[#4ade80] mb-1">10+</h3>
+                    <p class="text-sm md:text-base text-slate-300">CTF Completes</p>
+                </div>
+                <div class="space-y-2">
+                    <h3 class="text-4xl md:text-5xl font-extrabold text-[#4ade80] mb-1">10+</h3>
+                    <p class="text-sm md:text-base text-slate-300">Projects completed</p>
+                </div>
+                <div class="space-y-2">
+                    <h3 class="text-4xl md:text-5xl font-extrabold text-[#4ade80] mb-1">100+</h3>
+                    <p class="text-sm md:text-base text-slate-300">THM Rooms Complete</p>
+                </div>
+                <div class="space-y-2">
+                    <h3 class="text-4xl md:text-5xl font-extrabold text-[#4ade80] mb-1">50+</h3>
+                    <p class="text-sm md:text-base text-slate-300">Linux Tools Used</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="summary">
+            <h2 class="section-title text-3xl md:text-4xl font-bold mb-10">Summary</h2>
+            <p class="text-base md:text-lg text-slate-300 leading-relaxed">
+                A dynamic cybersecurity professional with hands-on experience as a Cybersecurity Intern, adept at network monitoring and security protocols. Proven ability to identify threats and implement effective countermeasures while excelling in problem identification and time management. Committed to continuous learning and enhancing team performance through innovative solutions. Resourceful Vulnerability Assessment and Penetration Tester known for productivity and efficiency in identifying security vulnerabilities and implementing preventative strategies. Possess specialized skills in ethical hacking, network security protocols, and risk management. Excel in problem-solving, critical thinking, and communication, ensuring seamless collaboration with teams to enhance system security robustly.
+            </p>
+        </section>
+        
+        <section id="skills">
+            <h2 class="section-title text-3xl md:text-4xl font-bold mb-10">Skills</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                <div class="p-6 md:p-8 rounded-3xl card-bg">
+                    <h3 class="text-xl md:text-2xl font-bold text-white mb-4">Technical Expertise</h3>
+                    <ul class="list-disc list-inside space-y-2 text-sm md:text-base text-slate-300">
+                        <li>Cybersecurity Fundamentals</li>
+                        <li>Ethical Hacking & VAPT</li>
+                        <li>Network & Web Application Security</li>
+                        <li>Kali Linux, Wireshark, Nmap, Metasploit</li>
+                        <li>Vulnerability Assessment & Penetration Testing</li>
+                    </ul>
+                </div>
+                <div class="p-6 md:p-8 rounded-3xl card-bg">
+                    <h3 class="text-xl md:text-2xl font-bold text-white mb-4">Professional Abilities</h3>
+                    <ul class="list-disc list-inside space-y-2 text-sm md:text-base text-slate-300">
+                        <li>Problem Solving & Critical Thinking</li>
+                        <li>Effective Communication</li>
+                        <li>Time Management & Multitasking</li>
+                        <li>Research & Data Management</li>
+                        <li>Proactive Threat Identification</li>
+                    </ul>
+                </div>
+                <div class="p-6 md:p-8 rounded-3xl card-bg">
+                    <h3 class="text-xl md:text-2xl font-bold text-white mb-4">Tools & Platforms</h3>
+                    <ul class="list-disc list-inside space-y-2 text-sm md:text-base text-slate-300">
+                        <li>Burp Suite</li>
+                        <li>MS Office & Canva</li>
+                        <li>HackerOne & TryHackMe</li>
+                        <li>Log File Analysis</li>
+                        <li>System Scans & Network Monitoring</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2 class="section-title text-3xl md:text-4xl font-bold mb-10">Experience</h2>
+            <div class="grid grid-cols-1 gap-8">
+                <div class="p-6 md:p-8 rounded-3xl card-bg">
+                    <h3 class="text-2xl font-bold text-white">Cybersecurity Intern</h3>
+                    <p class="text-slate-400 mb-4">Beginner | Amritsar, Punjab | Mar 2024 - May 2024</p>
+                    <ul class="list-disc list-inside space-y-2 text-base text-slate-300">
+                        <li>Assisted in monitoring security alerts and identifying potential threats.</li>
+                        <li>Supported the team in configuring security tools and software applications.</li>
+                        <li>Updated internal documentation on security protocols and best practices.</li>
+                        <li>Researched emerging trends in cybersecurity threats, risks, and countermeasures.</li>
+                        <li>Monitored network traffic for malicious or unauthorized activity.</li>
+                    </ul>
+                </div>
+                <div class="p-6 md:p-8 rounded-3xl card-bg">
+                    <h3 class="text-2xl font-bold text-white">Participant</h3>
+                    <p class="text-slate-400 mb-4">REALLIFE HACKATHON | Amritsar, Punjab | Mar 2025</p>
+                    <ul class="list-disc list-inside space-y-2 text-base text-slate-300">
+                        <li>Contributed innovative ideas and solutions to enhance team performance and outcomes.</li>
+                        <li>Worked with cross-functional teams to achieve common goals.</li>
+                    </ul>
+                </div>
+                <div class="p-6 md:p-8 rounded-3xl card-bg">
+                    <h3 class="text-2xl font-bold text-white">Burp Suite</h3>
+                    <p class="text-slate-400 mb-4">From 2023 to onward</p>
+                    <ul class="list-disc list-inside space-y-2 text-base text-slate-300">
+                        <li>Web Application Penetration Testing</li>
+                        <li>Proxy and Interception</li>
+                        <li>Automated Scanning and Manual Testing</li>
+                        <li>Reporting and Analysis</li>
+                        <li>Payload Generation</li>
+                        <li>Session and State Management</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="education">
+            <h2 class="section-title text-3xl md:text-4xl font-bold mb-10">Education & Training</h2>
+            <div class="grid grid-cols-1 gap-8">
+                <div class="p-6 md:p-8 rounded-3xl card-bg">
+                    <h3 class="text-2xl font-bold text-white">Bachelor of Technology: CSE</h3>
+                    <p class="text-slate-400 mb-4">Amritsar Group of Colleges | Amritsar, Punjab | Aug 2023 - Current</p>
+                </div>
+                <div class="p-6 md:p-8 rounded-3xl card-bg">
+                    <h3 class="text-2xl font-bold text-white">Bachelor of Technology: Cyber Security</h3>
+                    <p class="text-slate-400 mb-4">Pregrad Institute | Utter Pradesh | Mar 2024</p>
+                </div>
+                <div class="p-6 md:p-8 rounded-3xl card-bg">
+                    <a href="https://tryhackme.com/p/RobertJung"> <h3 class="text-2xl font-bold text-white">Try Hack Me</h3></a>
+                    <p class="text-slate-400 mb-4">Clickable</p>
+                </div>
+            </div>
+        </section>
+
+       
+        
+        <section id="resume" class="text-center">
+            <h2 class="section-title text-3xl md:text-4xl font-bold mb-10">My Resume</h2>
+            <div class="card-bg p-6 md:p-8 rounded-3xl mx-auto max-w-2xl">
+                <p class="text-base md:text-lg mb-6">
+                    A preview of my resume is shown below. You can download the full document for more details.
+                </p>
+                <img src="https://placehold.co/800x1131/1a1a1a/d1d5db?text=Resume+Preview" alt="Resume Preview" class="rounded-xl border-2 border-gray-600 shadow-lg mx-auto mb-6 max-w-full h-auto">
+                <a href="/home/lucifer/Downloads/resume.pdf" download="Rohit_Kumar_Chaurasiya_Resume.pdf" class="text-white bg-[#4ade80] hover:bg-emerald-600 transition-colors py-3 px-6 rounded-full font-bold shadow-lg inline-block">
+                    Download Full Resume (PDF)
+                </a>
+                </div>
+        </section>
+
+         <section id="contact" class="text-center">
+            <h2 class="section-title text-3xl md:text-4xl font-bold mb-10">Contact Me</h2>
+            <div class="card-bg p-6 md:p-8 rounded-3xl mx-auto max-w-2xl">
+                <p class="text-base md:text-lg mb-4">
+                    Feel free to reach out to me for professional inquiries or collaborations.
+                </p>
+                <div class="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8 text-lg font-medium">
+                    <div class="flex items-center space-x-2">
+                        <span class="text-[#4ade80]">&#x2709;</span>
+                        <a href="mailto:rohitkumarchaurasiya43@gmail.com" class="text-slate-300 hover:text-[#4ade80] transition-colors">rohitkumarchaurasiya43@gmail.com</a>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <span class="text-[#4ade80]">&#x260E;</span>
+                        <a href="tel:8360064591" class="text-slate-300 hover:text-[#4ade80] transition-colors">+91 8360064591</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-8 text-slate-500 text-sm mt-12">
+        <p>Designed and built with ❤️</p>
+    </footer>
+
+    <script>
+    // Typing Effect Script for Name
+    const typingTextElement = document.getElementById('typing-text');
+    const glitchTextElement = document.getElementById('glitch-text');
+    const introTextElement = document.getElementById('intro-text');
+    const textToType = "Rohit Kumar Chaurasiya";
+    const glitchTitle = "Cybersecurity Professional & Penetration Tester";
+    const introText = "I am a proactive and results-driven cybersecurity professional with hands-on experience in network monitoring, VAPT, and ethical hacking. My expertise lies in identifying vulnerabilities and implementing robust security measures to protect digital assets.";
+    let charIndex = 0;
+    let typingSpeed = 150;
+
+    function type() {
+        const currentText = textToType.substring(0, charIndex);
+        typingTextElement.textContent = currentText;
+
+        if (charIndex < textToType.length) {
+            charIndex++;
+            setTimeout(type, typingSpeed);
+        } else {
+            // When name typing is complete, start the glitch effect
+            setTimeout(() => glitchText(glitchTextElement, glitchTitle, typeIntro), 500);
+        }
+    }
+
+    // Glitch Effect Script for Title
+    function glitchText(element, finalText, onComplete) {
+        const characters = '01'; // Binary characters
+        let revealIndex = 0;
+        const interval = setInterval(() => {
+            let glitchedString = '';
+            // Generate a glitched string
+            for (let i = 0; i < finalText.length; i++) {
+                if (i < revealIndex) {
+                    // Reveal the correct character
+                    glitchedString += finalText[i];
+                } else {
+                    // Add a random binary character
+                    glitchedString += characters[Math.floor(Math.random() * characters.length)];
+                }
+            }
+            element.textContent = glitchedString;
+
+            // Gradually reveal more of the correct text
+            revealIndex++;
+            
+            // End the effect when all characters are revealed
+            if (revealIndex > finalText.length) {
+                element.textContent = finalText;
+                clearInterval(interval);
+                if (onComplete) onComplete();
+            }
+        }, 50); // Speed of the glitch effect
+    }
+
+    // Typing Effect for Introduction
+    function typeIntro() {
+        let introCharIndex = 0;
+        const introTypingSpeed = 50; // Faster typing speed for the intro text
+
+        function typeCurrentIntro() {
+            const currentText = introText.substring(0, introCharIndex);
+            introTextElement.textContent = currentText;
+
+            if (introCharIndex < introText.length) {
+                introCharIndex++;
+                setTimeout(typeCurrentIntro, introTypingSpeed);
+            }
+        }
+        typeCurrentIntro();
+    }
+
+    // Matrix-style Background Canvas Script
+    window.onload = function() {
+        const canvas = document.getElementById('background-canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const characters = '01'; // Binary style
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+
+        for (let i = 0; i < columns; i++) {
+            drops[i] = 1;
+        }
+
+        function draw() {
+            ctx.fillStyle = 'rgba(12, 12, 12, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#4ade80'; // Green text
+            ctx.font = fontSize + 'px Poppins';
+            
+            for (let i = 0; i < drops.length; i++) {
+                const text = characters[Math.floor(Math.random() * characters.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(draw, 33);
+        type();
+    };
+
+    window.addEventListener('resize', () => {
+        const canvas = document.getElementById('background-canvas');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        // Re-initialize drops array on resize
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+        for (let i = 0; i < columns; i++) {
+            drops[i] = 1;
+        }
+    });
+    </script>
+</body>
+</html>
